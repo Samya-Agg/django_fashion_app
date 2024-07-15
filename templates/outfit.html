@@ -1,0 +1,248 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outfit/Accessories Check</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Pacifico&display=swap');
+
+  
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-family: 'Pacifico' , cursive;
+            font-size: 3rem;
+            text-align: center;
+            margin: 20px 0;
+            color: #cd4662;
+        }
+
+        .user-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            gap: 30px;
+        }
+        .stylist{
+            box-shadow: #cd4662 3px 3px 3px 3px;
+            height: 300px;
+            width: 400px;
+            text-align: center;
+        }
+        .user-list p{
+            width: 400px;
+            margin-top: -10px;
+            
+        }
+
+        .user-list a {
+            font-size: 1.2rem;
+            background-color: #cd4662;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            margin: 30px 0;
+            padding: 10px 20px;
+            border: 2px solid #cd4662;
+            border-radius: 50px;
+            transition: background-color 0.3s, color 0.3s;
+            display: inline-block;
+        }
+
+        .user-list a:hover {
+            background-color: #cd4662;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0 auto;
+            width: 90%;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-header {
+            width: 100%;
+            text-align: center;
+            border-bottom: 2px solid #cd4662;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+
+        .messages {
+            width: 100%;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            padding: 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .message.you {
+            background-color: #cd4662;
+            color: white;
+            align-self: flex-end;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .message.other {
+            background-color: #e0e0e0;
+            color: #333;
+            align-self: flex-start;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .message img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .form-group, .input-group {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .form-group select, .input-group input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 2px solid #cd4662;
+            border-radius: 20px;
+            font-size: 1rem;
+            margin-right: 10px;
+            transition: border-color 0.3s;
+
+        }
+
+        .input-group button {
+            padding: 10px 20px;
+            background-color: #cd4662;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .input-group button:hover {
+            background-color: #b03a53;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #cd4662;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .user-list a {
+                font-size: 1rem;
+                padding: 8px 16px;
+            }
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <h1>Outfit/Accessories Check</h1>
+    
+    {% if request.user.username == 'ridhi15' or request.user.username == 'nishika15' or request.user.username == 'ritu15' %}
+    <div class="user-list">
+        <div class="chat-container">
+            <div class="chat-header">
+                <h1>Chat Box</h1>
+            </div>
+            <div class="messages">
+                {% for m in total %}
+                    {% if request.user == m.user %}
+                        <div class="message you">
+                            <p style="margin-top: 10px;"><strong>You:</strong> {{ m.message }}</p>
+                            <p><small>To: {{ m.recipient.username }}</small></p>
+                        </div>
+                    {% elif request.user == m.recipient %}
+                        <div class="message other">
+                            <p style="margin-top: 10px;"><strong>{{ m.user.username }}:</strong> {{ m.message }}</p>
+                            <p style="width: 200px; object-fit: contain;"><img src="{% static m.image.url %}"></p>
+                            <p style="margin-top: 10px;"><small>To: {{ m.recipient.username }}</small></p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% if request.user.is_authenticated %}
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="recipient" class="form-label">Recipient</label>
+                        <select name="recipient" id="recipient" class="form-control" required>
+                            {% for user in users %}
+                                <option value="{{ user.username }}">{{ user.username }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" name="body" class="form-control" placeholder="Enter message..." required>
+                        <button type="submit" class="btn btn-primary"  style="margin-top: 15px ; margin-left: 00px;">Send</button>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+    {% else %}
+    <div class="user-list">
+        <div class="stylist">
+            <a href="/store/outfit-chat/ridhi15">Ridhi Mehra</a>
+            <p>A coming of age designer who gained popularity within no time started designing for some of the top Bollywood celebrities. But she also slowly moved into making ethnic wear with a contemporary touch. She is known for her offbeat jumpsuit designs too. It did not take her too long before she hit the runway at the Lakme Fashion Week.</p>
+    
+        </div>
+        <div  class="stylist">
+            <a href="/store/outfit-chat/nishika15">Nishika Lulla</a>
+            <p>Her mother influenced her heavily because of all the trips she would make with her kid. But, what makes her label ‘Nisshk’ unique is that it caters to youngsters—teenage to roughly 30 years.The fabrics that you will mostly see on this label are tulle, net, lace and sequin which work so well for her target group. Bling, chic and vibrant just how they like it. Now that’s what we call passion.</p>
+    
+        </div>
+
+        <div class="stylist">
+            <a href="/store/outfit-chat/ritu15">Ritu Kumar</a>
+        <p>She took it upon herself to bring ancient Indian traditions to the millennial generation and deliver it in modern style. Her contribution to the Indian fashion industry is humongous, and she has been awarded the prestigious ‘Indira Gandhi Priyadarshini Award’ for her contribution in the field of fashion.</p>
+        </div>
+        
+    </div>
+    
+    <div class="footer">
+        <p>Connect with specialists and create the best outfits and accessories for yourself!</p>
+    </div>
+    {% endif %}
+</body>
+</html>

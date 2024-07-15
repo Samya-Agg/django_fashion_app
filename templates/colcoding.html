@@ -1,0 +1,307 @@
+{% extends 'main.html'%}
+{% load static %}
+{% block content %}
+
+<!-- 
+<style>
+    body {
+            background-color: #f4f2ef;
+            color: #303030;
+            font-family: 'Poppins', sans-serif;
+        }
+        .box-element {
+            background-color: #ffffff;
+            /* border: px solid #cd4662; */
+            box-shadow: #cd4662 3px 3px 3px 3px;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .thumbnail {
+            border-radius: 10px;
+            height: 200px;
+            width: 200px;
+            margin-bottom: 15px;
+        }
+
+        .product h6 {
+            color: #ff4d6d;
+            font-weight: 600;
+        }
+
+        .product hr {
+            border-top: 2px solid #ff4d6d;
+            margin: 10px 0;
+        }
+
+        .add-btn {
+            background-color: #00b4d8;
+            color: #ffffff;
+        }
+
+        .add-btn:hover {
+            background-color: #48cae4;
+            color: #ffffff;
+        }
+
+        .btn-outline-success {
+            border-color: #00b4d8;
+            color: #00b4d8;
+        }
+
+        .btn-outline-success:hover {
+            background-color: #00b4d8;
+            color: #ffffff;
+        }
+    
+</style>
+<h1>Colour Coding result</h1>
+{{ colours.colour1 }}
+<br>
+{{ colours.colour2 }}
+<br>
+{{ colours.colour3 }}
+<br>
+{{ colours.colour4 }}
+<br>
+
+<div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+    {% for product in products %}
+    <div class="col-lg-4 mb-4" style="display: flex; justify-content: center;">
+        <div class="product-container" style="height: 100%; width: 300px; display: flex; flex-direction: column; align-items: center;">
+            <div style="height: 300px; width: 300px;">
+                <img class="thumbnail" src="{% static product.image.url %}" style="object-fit: contain; width: 100%; height: 100%;">
+            </div>
+            <div class="box-element product" style="width: 100%; text-align: center;">
+                <h6><strong>{{ product.name }}</strong></h6>
+                <hr>
+                <form method="post" action="{% url 'store' %}">
+                    {% csrf_token %}
+                    <input hidden value="{{ product.id }}" name="product_id">
+                    {% if product.id in product_cart %}
+                    <input class="btn btn-outline-secondary add-btn" type="submit" value="Go to Cart">
+                    {% else %}
+                    <input class="btn btn-outline-secondary add-btn" type="submit" value="Add to Cart">
+                    {% endif %}
+                </form>
+                <a class="btn btn-outline-success" href="{% url 'product' product.id %}">View</a>
+                <h4 style="display: inline-block; float: right;">Rs {{ product.price }}</h4>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+   -->
+<!--    
+    <style>
+        body {
+           background-color: #f4f2ef;
+           color: #303030;
+           font-family: 'Poppins', sans-serif;
+       } 
+       .box-element {
+           background-color: #ffffff;
+           /* border: px solid #cd4662; */
+           box-shadow: #cd4662 3px 3px 3px 3px;
+           border-radius: 10px;
+           padding: 20px;
+           text-align: center;
+       }
+   
+       .thumbnail {
+           border-radius: 10px;
+           height: 200px;
+           width: 200px;
+           margin-bottom: 15px;
+       }
+   
+       .product h6 {
+           color: #ff4d6d;
+           font-weight: 600;
+       }
+   
+       .product hr {
+           border-top: 2px solid #ff4d6d;
+           margin: 10px 0;
+   }
+   
+       .add-btn {
+           background-color: #00b4d8;
+           color: #ffffff;
+       }
+   
+       .add-btn:hover {
+           background-color: #48cae4;
+           color: #ffffff;
+       }
+   
+       .btn-outline-success {
+           border-color: #00b4d8;
+           color: #00b4d8;
+       }
+   
+       .btn-outline-success:hover {
+           background-color: #00b4d8;
+           color: #ffffff;
+       }
+   </style> 
+  
+   
+   <h1>Colour Coding result</h1>
+   <p>{{ colours.colour1 }}</p>
+   <p>{{ colours.colour2 }}</p>
+   <p>{{ colours.colour3 }}</p>
+   <p>{{ colours.colour4 }}</p>
+   
+   <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+       {% for product in products %}
+       <div class="col-lg-4 mb-4" style="display: flex; justify-content: center;">
+           <div class="product-container" style="height: 100%; width: 300px; display: flex; flex-direction: column; align-items: center;">
+               <div style="height: 300px; width: 300px;">
+                   <img class="thumbnail" src="{%static  product.image.url %}" style="object-fit: contain; width: 100%; height: 100%;">
+               </div>
+               <div class="box-element product" style="width: 100%; text-align: center;">
+                   <h6><strong>{{ product.name }}</strong></h6>
+                   <hr>
+                   <form method="post" action="{% url 'store' %}">
+                       {% csrf_token %}
+                       <input hidden value="{{ product.id }}" name="product_id">
+                       {% if product.id in product_cart %}
+                       <input class="btn btn-outline-secondary add-btn" type="submit" value="Go to Cart">
+                       {% else %}
+                       <input class="btn btn-outline-secondary add-btn" type="submit" value="Add to Cart">
+                       {% endif %}
+                   </form>
+                   <a class="btn btn-outline-success" href="{% url 'product' product.id %}">View</a>
+                   <h4 style="display: inline-block; float: right;">Rs {{ product.price }}</h4>
+               </div>
+           </div>
+       </div>
+       {% endfor %}
+   </div>
+ 
+    -->
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gen Z Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Pacifico&display=swap');
+
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f2ef;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-family:'Pacifico' , cursive ;
+            font-size: 2.5em;
+            text-align: center;
+            color: #cd4662;
+            margin-top: 20px;
+        }
+        p {
+            text-align: center;
+            font-size: 1.2em;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .product-container {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: #cd4662 3px 3px 3px;
+            margin: 10px;
+            padding: 15px;
+            width: 250px;
+            transition: transform 0.2s;
+        }
+        .product-container:hover {
+            transform: scale(1.05);
+        }
+        .thumbnail {
+            width: 100%;
+            border-radius: 15px;
+        }
+        .box-element {
+            text-align: center;
+        }
+        .btn {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 25px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .btn-outline-secondary {
+            background-color: #fff;
+            color: #333;
+            border: 2px solid #333;
+        }
+        .btn-outline-secondary:hover {
+            background-color: #333;
+            color: #fff;
+        }
+        .btn-outline-success {
+            background-color: #fff;
+            color: #aec289;
+            border: 2px solid #aec289;
+        }
+        .btn-outline-success:hover {
+            background-color: #aec289;
+            color: #fff;
+        }
+        h4 {
+            color: #cd4662;
+            font-weight: 700;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shop with Us! </h1>
+    <p style="font-family: 'Raleway', sans-serif;">Find the coolest stuff here! </p>
+    <p>{{ colours.colour1 }}</p>
+    <p>{{ colours.colour2 }}</p>
+    <p>{{ colours.colour3 }}</p>
+    <p>{{ colours.colour4 }}</p>
+
+    <div class="row">
+        {% for product in products %}
+        <div class="product-container">
+            <img class="thumbnail" src="{% static product.image.url %}">
+            <div class="box-element product">
+                <h6 style="margin-top: 10px;"><strong>{{ product.name }}</strong></h6>
+                <hr>
+                <form method="post" action="{% url 'colcoding' colours.skin %}">
+                    {% csrf_token %}
+                    <input hidden value="{{ product.id }}" name="product_id">
+                    {% if product.id in product_cart %}
+                    <input class="btn btn-outline-secondary add-btn" type="submit" value="Go to Cart">
+                    {% else %}
+                    <input class="btn btn-outline-secondary add-btn" type="submit" value="Add to Cart">
+                    {% endif %}
+                </form>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+                    <a class="btn btn-outline-success" href="{% url 'product' product.id %}">View</a>
+                    <h4 style="display: inline-block; float: right;">Rs {{ product.price }}</h4>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+{% endblock %}

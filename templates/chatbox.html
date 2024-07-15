@@ -1,0 +1,189 @@
+
+
+<!-- To : {{ user.username }}
+
+<div class="messages">
+    {% for m in total %}
+        {% if request.user == m.user %}
+            <div class="message you">
+                <p><strong>You:</strong> {{ m.message }}</p>
+                <p><small>To: {{ m.recipient.username }}</small></p>
+            </div>
+        {% elif request.user == m.recipient %}
+            <div class="message other">
+                <p><strong>{{ m.user.username }}:</strong> {{ m.message }}</p>
+                <p><small>To: {{ m.recipient.username }}</small></p>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% if request.user.is_authenticated %}
+    <form method="post" action="">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="recipient" class="form-label">Recipient</label>
+            <select name="recipient" id="recipient" class="form-control" required>
+                {% for user in users %}
+                    <option value="{{ user.username }}">{{ user.username }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="input-group">
+            <input type="text" name="body" class="form-control" placeholder="Enter message..." required>
+            <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+    </form>
+{% endif %}
+</div> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f4f2ef;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .chat-container {
+            width: 80%;
+            max-width: 600px;
+            background: #ffffff;
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: #cd4662 3px 3px 3px 3px;
+            display: flex;
+            flex-direction: column;
+            height: 80%;
+        }
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+        }
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+        }
+
+        .message.you {
+            background: #d1e7dd;
+            align-self : flex-end;
+        }
+
+        .message.other {
+            background : #f8d7da;
+            align-self : flex-start;
+        }
+
+        .form-control, .btn {
+            margin-bottom: 1rem;
+        }
+
+        .input-group { 
+            display : flex;
+        }
+
+        .input-group input {
+            flex-grow : 1;
+            margin-right : 0.5rem;
+        }
+        
+
+
+    </style>
+
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>Chat Box</h1>
+            {% if request.user.is_authenticated %}
+                <a href="/user/logout/" class="btn btn-danger btn-sm">Logout</a>
+            {% endif %}
+        </div>
+        <div class="messages">
+            {% for m in total %}
+                {% if request.user == m.user %}
+                    <div class="message you">
+                        <p><strong>You:</strong> {{ m.message }}</p>
+                        <p><small>To: {{ m.recipient.username }}</small></p>
+                    </div>
+                {% elif request.user == m.recipient %}
+                    <div class="message other">
+                        <p><strong>{{ m.user.username }}:</strong> {{ m.message }}</p>
+                        <p><small>To: {{ m.recipient.username }}</small></p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% if request.user.is_authenticated %}
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="recipient" class="form-label">Recipient</label>
+                    <select name="recipient" id="recipient" class="form-control" required>
+                        {% for user in users %}
+                            <option value="{{ user.username }}">{{ user.username }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="input-group">
+                    <input type="text" name="body" class="form-control" placeholder="Enter message..." required>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+            </form>
+        {% endif %}
+    </div>
+    
+<!-- {% for msg in messages %}
+
+    @{{ msg.user }}
+    <br>
+    {{ msg.message }}
+    <br>
+    <hr>
+
+    {% endfor %}
+
+    {% if request.user.is_authenticated %}
+    <form method="post" action="">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Recipient</label>
+        <input type="text" class="form-control" name="reient" id="recint" aria-describedby="emailHelp">
+      </div>
+      <label for="recipient" class="form-label">Recipient</label>
+      <select name="recipient" id="recipient" required>
+          {% for user in users %}
+              <option value="recipient">{{ user.username }}</option>
+          {% endfor %}
+      </select>
+  </div>
+
+    <input type="text" name="body" placeholder="Enter message...">
+    <input type="submit" value="Send">
+    </form>
+    {% endif %}-->
+
+
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+--> 

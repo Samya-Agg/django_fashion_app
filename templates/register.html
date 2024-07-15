@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Pacifico&display=swap');
+
+        body{
+            background: url("{% static 'images/bg4.avif'%}") no-repeat center center fixed; 
+            background-size: cover;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family:'Poppins' , sans-serif ;
+            font-size: 10px;
+       }
+       h3 {
+            font-family: 'Pacifico', cursive;
+            font-size: 38px;
+            margin-bottom: 20px;
+            color: #cd4662;
+        }
+        .regis{
+            display: flex;
+            align-items:center;
+            justify-content:center ;
+            margin-top: 30px;
+            margin-left: 400px;
+        }
+        .register{
+            background-color:transparent;
+            color: #ffffff;
+            font-size: 18px;
+            height: 70vh;
+            width:500px;  
+            border-radius: 5%;
+            display: flex;
+            justify-content:center;
+            align-items:center;      
+        }
+        .register form {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centers the form elements horizontally */
+            width: 100%;
+        }
+
+        .register input[type="submit"] {
+            background-color: #cd4662;
+            color: #ffffff;
+            font-size: 20px;
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .register form p {
+            margin: 0; /* Reset the default margin for paragraphs */
+            padding: 3px 0; /* Add custom padding for better spacing */
+        }
+        .register form p input {
+            width: 35%; /* Adjust the width of input fields */
+        }
+        
+    </style>
+</head>
+<body>
+    <h3>Register</h3>
+    <div class="regis">
+        <div class="register">
+            <form method="post" action="">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Register" style="background-color:#cd4662; color:#ffffff;
+                font-size: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                ">
+            </form>
+        
+        </div>
+
+    </div>
+</body>
+</html>

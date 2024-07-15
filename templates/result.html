@@ -1,0 +1,16 @@
+{% load static %}
+<h1>Result</h1>
+
+<h1>Similar Products</h1>
+{% for product in products %}
+  <div class="col-lg-4 mb-4"> 
+      <div style="height:300px; width: 300px;">
+          <img class="thumbnail" src="{% static product.image.url %}" style="object-fit: contain;">
+          <div class="box-element product">
+              <h6><strong>{{ product.name }}</strong></h6>
+              <hr>
+              <h4 style="display: inline-block; float: right;">Rs {{ product.price }}</h4>
+          </div>
+      </div>
+  </div>
+  {% endfor %}

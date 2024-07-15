@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Pacifico&display=swap');
+
+       
+      body{
+        background: url("{% static 'images/bg4.avif'%}") no-repeat center center fixed; 
+        background-size: cover;
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-family: 'Poppins' , sans-serif;
+        color: #ffffff;
+
+      }
+      .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h3 {
+            font-family: 'Pacifico', cursive;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #cd4662;
+        }
+
+        .form__group {
+            margin-bottom: 20px;
+        }
+
+        .form__group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form__group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .btn--main {
+            background-color: #cd4662;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn--main:hover {
+            background-color: #a83a50;
+        }
+    </style>
+</head>
+<body>
+    <div>
+      <h3>Login</h3>
+    </div>
+    <div>
+      <form class="form" action="" method="post">
+        {% csrf_token %}
+        <div class="form__group form__group">
+          <label for="room_name">Username</label>
+          <input id="username" name="username" type="text" placeholder="e.g. dennis_ivy" />
+        </div>
+        <div class="form__group">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+          />
+        </div>
+
+        <input class="btn btn--main" type="submit" value="submit" type="submit">
+            </input>
+        </form>
+    </div>
+    
+</body>
+</html>
